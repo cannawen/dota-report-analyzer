@@ -16,8 +16,6 @@ function loadAll() {
 
 loadAll();
 
-var elements = document.getElementsByTagName('*');
-
 function format(number) {
     if (number < 10) {
         return "0" + number;
@@ -44,7 +42,6 @@ function addMatchLinks(element, matchId) {
     a.innerHTML = " [od]";
     element.appendChild(a)
 
-
     var a = document.createElement('a');
     a.setAttribute('href', "https://www.dotabuff.com/matches/" + matchId);
     a.innerHTML = "[db]";
@@ -52,6 +49,8 @@ function addMatchLinks(element, matchId) {
 }
 
 function convert() {
+  var elements = document.getElementsByTagName('*');
+
   for (var i = 0; i < elements.length; i++) {
       var element = elements[i];
 
