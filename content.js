@@ -1,3 +1,17 @@
+function loadAll() {
+  var button = document.getElementById('load_more_button')
+  if (button.style.display != "none") {
+    button.click();
+    setTimeout(function() {
+      loadAll();
+    }, 1000);
+  } else {
+    convert()
+  }
+}
+
+loadAll();
+
 var elements = document.getElementsByTagName('*');
 
 function format(number) {
@@ -33,25 +47,27 @@ function addMatchLinks(element, matchId) {
     element.appendChild(a)
 }
 
-for (var i = 0; i < elements.length; i++) {
-    var element = elements[i];
+function convert() {
+  for (var i = 0; i < elements.length; i++) {
+      var element = elements[i];
 
-    for (var j = 0; j < element.childNodes.length; j++) {
-        var node = element.childNodes[j];
+      for (var j = 0; j < element.childNodes.length; j++) {
+          var node = element.childNodes[j];
 
-        if (node.nodeType === 3) {
-            var text = node.nodeValue;
-            var date = text.match(/1\d{9}/g)
-            var matchId = text.match(/[2-9]\d{9}/g)
+          if (node.nodeType === 3) {
+              var text = node.nodeValue;
+              var date = text.match(/1\d{9}/g)
+              var matchId = text.match(/[2-9]\d{9}/g)
 
-            var replacedText = undefined;
+              var replacedText = undefined;
 
-            if (date) {
-                var replacedText = text.replace(/1\d{9}/g, timeConverter(parseInt(date)));
-                element.replaceChild(document.createTextNode(replacedText), node);
-            } else if (matchId) {
-                addMatchLinks(element, matchId)               
-            }
-        }
-    }
+              if (date) {
+                  var replacedText = text.replace(/1\d{9}/g, timeConverter(parseInt(date)));
+                  element.replaceChild(document.createTextNode(replacedText), node);
+              } else if (matchId) {
+                  addMatchLinks(element, matchId)               
+              }
+          }
+      }
+  }
 }
