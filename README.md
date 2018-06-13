@@ -8,17 +8,19 @@ After:
 Before:
 ![Before](screenshots/before.png)
 
+Note: It may take a few seconds to load all your data
+
 ## Development
 
 PRs welcome!
 
 ### Running the app
 
-1. Clone the repo
+1. Download the code from GitHub
 2. Visit `chrome://extensions/` in Google Chrome
 3. Click "LOAD UNPACKED"
-4. Select the directory for `dota-report-analyzer`
-5. Visit the reports page to see it in action!
+4. Select the directory `dota-report-analyzer/src`
+5. Visit your [reports page](https://steamcommunity.com/my/gcpd/570/?category=Account&tab=MatchPlayerReportIncoming) to see it in action!
 
 ## Contributors
 
