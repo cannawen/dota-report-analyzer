@@ -10,7 +10,7 @@
                 "*://steamcommunity.com/*"
             ],
             "js": [
-                "content.js"
+                "src/content.js"
             ],
             "run_at": "document_end"
         }
