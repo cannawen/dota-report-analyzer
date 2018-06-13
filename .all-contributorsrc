@@ -1,0 +1,31 @@
+{
+  "projectName": "dota-report-analyzer",
+  "projectOwner": "cannawen",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "contributors": [
+    {
+      "login": "cannawen",
+      "name": "Canna Wen",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1088336?v=4",
+      "profile": "https://www.cannawen.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "yarwest",
+      "name": "Yarno Boelens",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/11287972?v=4",
+      "profile": "http://yarnoboelens.com",
+      "contributions": [
+        "code"
+      ]
+    }
+  ]
+}
