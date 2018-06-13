@@ -74,14 +74,15 @@ function convert() {
   var matchIdIndex = headerTitles.indexOf("MatchID");
   var dateIndex = headerTitles.indexOf("Date");
 
-  var report_communicationAbuseIndex = headerTitles.indexOf("Communication Abuse");
-  var report_abilityAbuseIndex = headerTitles.indexOf("Ability Abuse");
-  var report_feedingIndex = headerTitles.indexOf("Feeding");
-  
-  var commend_leadershipIndex = headerTitles.indexOf("Leadership");
-  var commend_teachingIndex = headerTitles.indexOf("Teaching");
-  var commend_friendlyIndex = headerTitles.indexOf("Friendly");
-  var commend_forgivingIndex = headerTitles.indexOf("Forgiving");
+  var yesNoColumns = [
+    headerTitles.indexOf("Communication Abuse"),
+    headerTitles.indexOf("Ability Abuse"),
+    headerTitles.indexOf("Feeding"),
+    headerTitles.indexOf("Leadership"),
+    headerTitles.indexOf("Teaching"),
+    headerTitles.indexOf("Friendly"),
+    headerTitles.indexOf("Forgiving")
+  ];
   
   for (var i = 0; i < rows.length; i++) {
     var row = rows[i].children;
@@ -92,13 +93,6 @@ function convert() {
     var dateNode = row[dateIndex];
     updateNode(rows[i], dateIndex, timeConverter(dateNode.textContent))
 
-    updateYesNoNode(rows[i], report_communicationAbuseIndex, "Communication Abuse");
-    updateYesNoNode(rows[i], report_abilityAbuseIndex, "Ability Abuse");
-    updateYesNoNode(rows[i], report_feedingIndex, "Feeding");
-
-    updateYesNoNode(rows[i], commend_leadershipIndex, "Leadership");
-    updateYesNoNode(rows[i], commend_teachingIndex, "Teaching");
-    updateYesNoNode(rows[i], commend_friendlyIndex, "Friendly");
-    updateYesNoNode(rows[i], commend_forgivingIndex, "Forgiving");
+    yesNoColumns.map((index) => updateYesNoNode(rows[i], index, headerTitles[index]))
   }
 }
