@@ -48,29 +48,57 @@ function addMatchLinks(element, matchId) {
     element.appendChild(a)
 }
 
+function updateNode(row, columnIndex, text) {
+  var currentNode = row.children[columnIndex];
+  var newNode = document.createElement('td');
+  newNode.innerHTML = text;
+  row.replaceChild(newNode, currentNode)
+}
+
+function updateYesNoNode(row, columnIndex, text) {
+  var node = row.children[columnIndex];
+
+  if (node.textContent == "Yes") {
+    updateNode(row, columnIndex, text);
+  } else {
+    updateNode(row, columnIndex, "-");
+  }
+}
+
 function convert() {
-  var elements = document.getElementsByTagName('*');
+  var table = document.getElementsByClassName("generic_kv_table");
+  var rows = Array.from(table[0].children[0].children);
 
-  for (var i = 0; i < elements.length; i++) {
-      var element = elements[i];
+  var headerTitles = Array.from(rows.shift().children).map((th) => th.textContent);
 
-      for (var j = 0; j < element.childNodes.length; j++) {
-          var node = element.childNodes[j];
+  var matchIdIndex = headerTitles.indexOf("MatchID");
+  var dateIndex = headerTitles.indexOf("Date");
 
-          if (node.nodeType === 3) {
-              var text = node.nodeValue;
-              var date = text.match(/1\d{9}/g)
-              var matchId = text.match(/[2-9]\d{9}/g)
+  var report_communicationAbuseIndex = headerTitles.indexOf("Communication Abuse");
+  var report_abilityAbuseIndex = headerTitles.indexOf("Ability Abuse");
+  var report_feedingIndex = headerTitles.indexOf("Feeding");
+  
+  var commend_leadershipIndex = headerTitles.indexOf("Leadership");
+  var commend_teachingIndex = headerTitles.indexOf("Teaching");
+  var commend_friendlyIndex = headerTitles.indexOf("Friendly");
+  var commend_forgivingIndex = headerTitles.indexOf("Forgiving");
+  
+  for (var i = 0; i < rows.length; i++) {
+    var row = rows[i].children;
 
-              var replacedText = undefined;
+    var matchIdNode = row[matchIdIndex];
+    addMatchLinks(matchIdNode, matchIdNode.textContent);
 
-              if (date) {
-                  var replacedText = text.replace(/1\d{9}/g, timeConverter(parseInt(date)));
-                  element.replaceChild(document.createTextNode(replacedText), node);
-              } else if (matchId) {
-                  addMatchLinks(element, matchId)               
-              }
-          }
-      }
+    var dateNode = row[dateIndex];
+    updateNode(rows[i], dateIndex, timeConverter(dateNode.textContent))
+
+    updateYesNoNode(rows[i], report_communicationAbuseIndex, "Communication Abuse");
+    updateYesNoNode(rows[i], report_abilityAbuseIndex, "Ability Abuse");
+    updateYesNoNode(rows[i], report_feedingIndex, "Feeding");
+
+    updateYesNoNode(rows[i], commend_leadershipIndex, "Leadership");
+    updateYesNoNode(rows[i], commend_teachingIndex, "Teaching");
+    updateYesNoNode(rows[i], commend_friendlyIndex, "Friendly");
+    updateYesNoNode(rows[i], commend_forgivingIndex, "Forgiving");
   }
 }
