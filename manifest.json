@@ -1,0 +1,22 @@
+{
+"manifest_version": 2,
+    "name": "Dota Report Analyzer",
+    "description": "Dota Report Analyzer",
+    "version": "1.0",
+    "permissions": ["storage"],
+    "content_scripts": [
+        {
+            "matches": [
+                "*://steamcommunity.com/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_end"
+        }
+    ],
+    "icons": {
+      "16": "logo/dota_logo-16.png",
+      "128": "logo/dota_logo-128.png"
+    }
+}
