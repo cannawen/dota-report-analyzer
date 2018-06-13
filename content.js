@@ -5,6 +5,10 @@ function loadAll() {
     setTimeout(function() {
       loadAll();
     }, 1000);
+  } else if (document.getElementById('inventory_history_loading').style.display != "none") {
+    setTimeout(function() {
+      loadAll();
+    }, 500);
   } else {
     convert()
   }
